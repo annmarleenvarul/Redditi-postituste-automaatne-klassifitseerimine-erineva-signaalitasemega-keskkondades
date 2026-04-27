@@ -1,0 +1,64 @@
+[
+  {
+    "company": "hubspot",
+    "id": "post_1",
+    "title": "HubSpot's new pricing model is absolutely ridiculous — paying 3x more for same features",
+    "subreddit_name": "hubspot",
+    "num_of_comments": 142,
+    "score": 847,
+    "upvote_ratio": 0.96,
+    "created_utc": 1710000000,
+    "thread_for_llm": "Post: HubSpot's new pricing model is absolutely ridiculous — paying 3x more for same features. We got moved to a seat-based plan and now we're paying way more without getting much extra value. The migration support was weak and several features we relied on are now behind more expensive plans.\nComment(level 0): We are in the same situation. Seat-based pricing makes no sense for smaller teams.\nComment(level 0): We started looking at Pipedrive and Zoho because the cost increase is too hard to justify.\nComment(level 1): Exactly. The product is still decent, but the pricing is pushing us away.",
+    "llm_sentiment": "negative",
+    "product_feedback": true,
+    "relevancy_score": 94,
+    "labels": ["comparison", "churn_risk"],
+    "additional_labels": ["pricing"],
+    "highlights": [
+      {
+        "quote": "paying 3x more for same features",
+        "aspect": "pricing"
+      },
+      {
+        "quote": "Seat-based pricing makes no sense for smaller teams",
+        "aspect": "pricing"
+      },
+      {
+        "quote": "We started looking at Pipedrive and Zoho",
+        "aspect": "comparison"
+      }
+    ],
+    "summary_et": "Kasutajad on pahased HubSpoti hinnatõusu üle. Peamised kaebused on seat-põhine hinnastus, nõrk migratsioonitugi ning alternatiivide kaalumine."
+  },
+  {
+    "company": "hubspot",
+    "id": "post_2",
+    "title": "Finally got HubSpot AI features working properly — tips for new users",
+    "subreddit_name": "hubspot",
+    "num_of_comments": 29,
+    "score": 94,
+    "upvote_ratio": 0.91,
+    "created_utc": 1710500000,
+    "thread_for_llm": "Post: Finally got HubSpot AI features working properly — tips for new users. After some trial and error, we finally got the AI tools to help with drafting and workflow suggestions. The outputs are useful for first drafts, but still need human review.\nComment(level 0): Same here. It saves us time, especially when setting up repetitive workflows.\nComment(level 0): I like it overall, but some recommendations are too generic.\nComment(level 1): Yes, still useful, just not fully reliable on its own.",
+    "llm_sentiment": "positive",
+    "product_feedback": true,
+    "relevancy_score": 52,
+    "labels": [],
+    "additional_labels": ["AI_features"],
+    "highlights": [
+      {
+        "quote": "we finally got the AI tools to help with drafting and workflow suggestions",
+        "aspect": "AI"
+      },
+      {
+        "quote": "It saves us time",
+        "aspect": "automation"
+      },
+      {
+        "quote": "some recommendations are too generic",
+        "aspect": "AI"
+      }
+    ],
+    "summary_et": "Kasutajad kirjeldavad positiivset kogemust HubSpoti AI-funktsioonidega, kuid toovad välja, et soovitused on mõnikord liiga üldised ja vajavad inimkontrolli."
+  }
+]
