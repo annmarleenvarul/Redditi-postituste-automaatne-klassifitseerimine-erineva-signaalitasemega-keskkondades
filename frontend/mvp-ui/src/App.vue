@@ -93,9 +93,9 @@ function buildQueryParams(pageNumber = 1) {
   }
 
   const selectedSentiments = ['negative', 'positive', 'neutral'].filter(key => filters[key])
-  if (selectedSentiments.length === 1) {
-    params.set('sentiment', selectedSentiments[0])
-  }
+  if (selectedSentiments.length >= 1) {
+    params.set('sentiment', selectedSentiments.join(','))
+}
 
   const selectedLabels = ['bug_report', 'limitation', 'comparison', 'churn_risk', 'purchase_intent'].filter(key => filters[key])
   if (selectedLabels.length > 0) {

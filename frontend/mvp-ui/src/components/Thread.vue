@@ -35,7 +35,7 @@
 
     <div class="expanded" v-if="isExpanded">
 
-        <div class="loading-msg" v-if="detailLoading">...</div>
+        <div class="loading-msg" v-if="detailLoading">Laeb...</div>
 
         <template v-else-if="detail">
 

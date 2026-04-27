@@ -46,35 +46,29 @@ def get_threads(
     data = load_data()
     threads = data if isinstance(data, list) else list(data.values())
 
-    # Tab filter
     if tab == "product_feedback":
         threads = [t for t in threads if t.get("product_feedback")]
     elif tab == "bug_report":
         threads = [t for t in threads if "bug_report" in (t.get("labels") or [])]
 
-    # Sentiment filter
     if sentiment:
-        threads = [t for t in threads if t.get("llm_sentiment") == sentiment]
+        sentiment_list = [s.strip() for s in sentiment.split(',')]
+        threads = [t for t in threads if t.get("llm_sentiment") in sentiment_list]
 
-    # Product feedback filter
     if product_feedback is not None:
         threads = [t for t in threads if bool(t.get("product_feedback")) == product_feedback]
 
-    # Labels filter
     if labels:
         label_list = [l.strip() for l in labels.split(',') if l.strip()]
-        threads = [t for t in threads if any(l in (t.get('labels') or []) + (t.get('additional_labels') or []) for l in label_list)]
+        threads = [t for t in threads if all(l in (t.get('labels') or []) + (t.get('additional_labels') or []) for l in label_list)]
 
-    # Subreddit filter
     if subreddit:
         threads = [t for t in threads if t.get("raw_subreddit_name", "").lower() == subreddit.lower()]
 
     total = len(threads)
 
-    # Sort by score desc
     threads = sorted(threads, key=lambda t: t.get("relevancy_score", 0) or 0, reverse=True)
 
-    # Paginate
     start = (page - 1) * page_size
     page_threads = threads[start:start+page_size]
 
@@ -130,7 +124,6 @@ def get_stats(subreddit: Optional[str] = Query(None)):
     neu_pct = round(sentiments.get("neutral", 0) / total * 100) if total else 0
     fb_pct = round(product_feedback_count / total * 100) if total else 0
 
-    # Subreddits
     sub_counts = Counter(t.get("raw_subreddit_name", "") for t in threads)
     subreddits = [
         {"name": name, "count": count, "pct": round(count / total * 100) if total else 0}
@@ -194,7 +187,6 @@ def get_thread_detail(thread_id: str):
 
             by_id = {c["id"]: c for c in all_comments}
 
-            # Find comments containing a highlight + collect all ancestors
             matching_ids = set()
             for c in all_comments:
                 if contains_highlight(c.get("body", ""), highlight_quotes):
@@ -215,7 +207,6 @@ def get_thread_detail(thread_id: str):
             filtered = [c for c in all_comments if c["id"] in matching_ids]
             filtered.sort(key=lambda c: c.get("depth", 0))
 
-            # Check if post body/selftext contains a highlight
             selftext = t.get("raw_selftext") or ""
             show_selftext = contains_highlight(selftext, highlight_quotes) or bool(matching_ids)
 

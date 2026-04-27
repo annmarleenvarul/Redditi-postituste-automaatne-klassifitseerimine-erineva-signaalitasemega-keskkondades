@@ -57,7 +57,7 @@ const filterList = [
   { key: 'positive', label: 'Positiivne' },
   { key: 'neutral', label: 'Neutraalne' },
   { key: 'product_feedback', label: 'Tootetagasiside' },
-  { key: 'bug_report', label: 'Vea raport' },
+  { key: 'bug_report', label: 'Vearaport' },
   { key: 'limitation', label: 'Piirang' },
   { key: 'comparison', label: 'Võrdlus' },
   { key: 'churn_risk', label: 'Lahkumisrisk' },
