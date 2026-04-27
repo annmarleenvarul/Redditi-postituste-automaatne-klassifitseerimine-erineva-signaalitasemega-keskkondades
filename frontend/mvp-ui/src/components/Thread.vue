@@ -70,6 +70,7 @@
 </template>
 
 <script setup>
+import { reactive, watch } from 'vue'
 import Comments from './Comments.vue'
 
 const labelTranslations = {
@@ -98,25 +99,42 @@ const labelTranslations = {
     workflow_management:'Töövoo haldus',
 }
 
+const autoTranslated = reactive({})
+
 function translateLabel(label) {
-    return labelTranslations[label] || label.replaceAll('_', ' ')
+    return labelTranslations[label] || autoTranslated[label] || label.replaceAll('_', ' ')
+}
+
+async function fetchTranslation(label) {
+    if (labelTranslations[label] || autoTranslated[label]) return
+
+    const readable = label.replaceAll('_', ' ')
+    try {
+        const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=et&dt=t&q=${encodeURIComponent(readable)}`
+        const response = await fetch(url)
+        const data = await response.json()
+        autoTranslated[label] = data[0][0][0]
+    } catch {
+        autoTranslated[label] = readable
+    }
 }
 
 function labelClass(label) {
     return label.replaceAll('_', '-').toLowerCase()
 }
 
-defineProps({
-    thread: { type: Object,   required: true },
-    isExpanded: { type: Boolean,  default: false },
-    detail: { type: Object,   default: null },
-    detailLoading: { type: Boolean,  default: false },
-    highlightFn: { type: Function, required: true },
-    buildCommentTree: { type: Function, required: true },
-})
+const props = defineProps(['thread', 'isExpanded', 'detail', 'detailLoading', 'highlightFn', 'buildCommentTree'])
 
-defineEmits(['toggle'])
-</script>
+
+
+watch(() => props.thread.labels, (labels) => {
+    if (!labels) return
+    for (const label of labels) {
+        if (!labelTranslations[label]) {
+            fetchTranslation(label)
+        }
+    }
+}, { immediate: true })</script>
 
 <style scoped>
 .wrapper {

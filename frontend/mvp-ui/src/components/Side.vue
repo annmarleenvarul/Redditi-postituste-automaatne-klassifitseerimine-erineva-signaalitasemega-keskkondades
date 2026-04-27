@@ -31,7 +31,7 @@
     </div>
 
     <div class="box" v-if="stats">
-      <div class="title">Meelestatus</div>
+      <div class="title">Alamfoorumi meelestatus</div>
       <div v-for="sentiment in sentiments" :key="sentiment.key" class="row">
         <div class="bar-track">
           <div class="bar" :class="sentiment.key" :style="{ width: stats[sentiment.pct] + '%' }"></div>
@@ -92,11 +92,11 @@ aside {
 }
 
 .title {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: bold;
   letter-spacing: 0.07em;
   color: var(--gray);
-  text-transform: uppercase;
+  
 }
 
 .sub-item {
