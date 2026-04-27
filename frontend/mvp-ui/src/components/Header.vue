@@ -4,7 +4,7 @@
         <input :value="modelValue" type="text" placeholder="HubSpot" @input="$emit('update:modelValue', $event.target.value)" @keyup.enter="$emit('search')" />
     <button @click="$emit('search')">Otsi</button>
 
-    <span v-if="total" class="total">{{ total }} postitust</span>
+    <span v-if="total !== null" class="total">{{ total }} postitust</span>
     </header>
 </template>
 

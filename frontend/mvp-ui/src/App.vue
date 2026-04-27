@@ -1,7 +1,7 @@
 <template>
   <div class="app">
 
-    <AppHeader v-model="searchQuery" :total="stats?.total" @search="fetchData" />
+  <AppHeader v-model="searchQuery" :total="total" @search="fetchData" />
 
     <div class="layout">
 
@@ -67,6 +67,7 @@ const totalPages = ref(1)
 const expandedId = ref(null)           
 const threadDetail = ref(null)         
 const detailLoading = ref(false)       
+const total = ref(null)
 
 const filters = reactive({
   negative: false,
@@ -133,6 +134,8 @@ async function fetchData() {
 
     threads.value = threadsData.threads
     totalPages.value = threadsData.pages
+    total.value = threadsData.total 
+
     stats.value = statsData
 
   } catch (error) {
